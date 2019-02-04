@@ -8,20 +8,11 @@ let pageNumber = 1
 const main = document.getElementsByTagName('main')[0]
 const nextButton = document.getElementById('next-page')
 const previousButton = document.getElementById('previous-page')
+const currentUser = document.getElementById('current-user')
 
+// Event listeners for the menu
 previousButton.addEventListener('click', () => nextPage('previous'))
 nextButton.addEventListener('click', () => nextPage('next'))
-
-function getRecentTracks(user = 'denniswegereef', limit = 19) {
-  const totalRequest = `${url}?method=user.getrecenttracks&user=${user}&api_key=${key}&format=json&page=${pageNumber}&extended=1&limit=${limit}`
-
-  let promise = new Promise((resolve, reject) => {
-    fetch(totalRequest)
-      .then(res => res.json())
-      .then(res => resolve(res))
-  })
-  return promise
-}
 
 getRecentTracks()
   .then(res => {
@@ -40,7 +31,7 @@ function render(data) {
   ${data
     .map(
       d => `
-    <li class="track-single">
+    <li class="track-single ${d['@attr'] ? 'now-playing' : ''}">
       <img src="${
         d.image[2]['#text']
           ? d.image[2]['#text']
@@ -59,10 +50,9 @@ function render(data) {
   main.innerHTML = markup
 }
 
+// Next page module
 function nextPage(direction) {
   direction === 'next' ? pageNumber++ : pageNumber--
-
-  parent.location.hash = pageNumber
 
   direction === 'next'
     ? (nextButton.innerHTML = 'Loading...')
@@ -81,6 +71,8 @@ function nextPage(direction) {
       return res
     })
     .then(res => {
+      parent.location.hash = pageNumber
+
       nextButton.innerHTML = 'Next page'
       previousButton.innerHTML = 'Previous page'
     })
@@ -89,7 +81,23 @@ function nextPage(direction) {
     })
 }
 
-// Request every 60 seconds
+// Get recent tracks, possible to switch user and the limit
+function getRecentTracks(user = 'denniswegereef', limit = 19) {
+  const totalRequest = `${url}?method=user.getrecenttracks&user=${user}&api_key=${key}&format=json&page=${pageNumber}&extended=1&limit=${limit}`
+
+  let promise = new Promise((resolve, reject) => {
+    fetch(totalRequest)
+      .then(res => res.json())
+      .then(res => {
+        currentUser.innerHTML = res.recenttracks['@attr'].user
+        return res
+      })
+      .then(res => resolve(res))
+  })
+  return promise
+}
+
+// Request every 30 seconds
 setInterval(function() {
   getRecentTracks()
     .then(res => {
