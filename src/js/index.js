@@ -1,110 +1,34 @@
 'use strict'
 
-const key = '558413ce30002869acf1d2e2d9c2047b',
-  url = 'http://ws.audioscrobbler.com/2.0/'
-
-let pageNumber = 1
+import { getRecentTracks } from './helper/api-module.js'
+import { nextPageTest } from './components/next-page.js'
+import { render } from './render/recent-tracks.js'
+import { autoUpdate } from './render/auto-update.js'
 
 const main = document.getElementsByTagName('main')[0]
 const nextButton = document.getElementById('next-page')
 const previousButton = document.getElementById('previous-page')
 const currentUser = document.getElementById('current-user')
 
-// Event listeners for the menu
-previousButton.addEventListener('click', () => nextPage('previous'))
-nextButton.addEventListener('click', () => nextPage('next'))
+let currentUrlNumber = window.location.href.match(/\d+$/)[0]
 
-getRecentTracks()
+// First pageload render
+getRecentTracks(currentUrlNumber)
   .then(res => {
-    console.log(res)
+    // console.log(res)
     render(res.recenttracks.track)
   })
   .catch(err => {
     console.error(err)
   })
 
-function render(data) {
-  localStorage.setItem('musicData', JSON.stringify(data))
+// Active update page functionality
+autoUpdate()
 
-  const markup = `
-  <ul class="tracks">
-  ${data
-    .map(
-      d => `
-    <li class="track-single ${d['@attr'] ? 'now-playing' : ''}">
-      <img src="${
-        d.image[2]['#text']
-          ? d.image[2]['#text']
-          : 'https://via.placeholder.com/100'
-      }" alt="" />
-      <div>
-        <h2>${d.name}</h2>
-        <h3>${d.artist.name}</h3>
-        <p>${d['@attr'] ? 'Now playing' : d.date['#text']}
-      </div>
-    </li>`
-    )
-    .join('')}
-  </ul>`
-
-  main.innerHTML = markup
-}
-
-// Next page module
-function nextPage(direction) {
-  direction === 'next' ? pageNumber++ : pageNumber--
-
-  direction === 'next'
-    ? (nextButton.innerHTML = 'Loading...')
-    : (previousButton.innerHTML = 'Loading...')
-
-  getRecentTracks()
-    .then(res => {
-      render(res.recenttracks.track)
-    })
-    .then(res => {
-      if (pageNumber > 1) {
-        previousButton.style.display = 'inline-block'
-      } else {
-        previousButton.style.display = 'none'
-      }
-      return res
-    })
-    .then(res => {
-      parent.location.hash = pageNumber
-
-      nextButton.innerHTML = 'Next page'
-      previousButton.innerHTML = 'Previous page'
-    })
-    .catch(err => {
-      console.error(err)
-    })
-}
-
-// Get recent tracks, possible to switch user and the limit
-function getRecentTracks(user = 'denniswegereef', limit = 19) {
-  const totalRequest = `${url}?method=user.getrecenttracks&user=${user}&api_key=${key}&format=json&page=${pageNumber}&extended=1&limit=${limit}`
-
-  let promise = new Promise((resolve, reject) => {
-    fetch(totalRequest)
-      .then(res => res.json())
-      .then(res => {
-        currentUser.innerHTML = res.recenttracks['@attr'].user
-        return res
-      })
-      .then(res => resolve(res))
-  })
-  return promise
-}
-
-// Request every 30 seconds
-setInterval(function() {
-  getRecentTracks()
-    .then(res => {
-      //console.log(res)
-      render(res.recenttracks.track)
-    })
-    .catch(err => {
-      console.error(err)
-    })
-}, 30 * 1000)
+// Event listeners for the menu
+previousButton.addEventListener('click', () =>
+  nextPageTest('previous', nextButton, previousButton)
+)
+nextButton.addEventListener('click', () =>
+  nextPageTest('next', nextButton, previousButton)
+)
