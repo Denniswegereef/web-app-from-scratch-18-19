@@ -7,7 +7,7 @@ import { autoUpdate } from './render/auto-update.js'
 
 // import { Router } from './router.js'
 
-const main = document.getElementsByTagName('main')[0]
+const main = document.getElementById('main')
 const nextButton = document.getElementById('next-page')
 const previousButton = document.getElementById('previous-page')
 const currentUser = document.getElementById('current-user')
