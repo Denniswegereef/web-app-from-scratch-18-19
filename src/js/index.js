@@ -5,12 +5,20 @@ import { nextPageTest } from './components/next-page.js'
 import { render } from './render/recent-tracks.js'
 import { autoUpdate } from './render/auto-update.js'
 
+// import { Router } from './router.js'
+
 const main = document.getElementsByTagName('main')[0]
 const nextButton = document.getElementById('next-page')
 const previousButton = document.getElementById('previous-page')
 const currentUser = document.getElementById('current-user')
 
-let currentUrlNumber = window.location.href.match(/\d+$/)[0]
+let currentUrlNumber
+
+if (window.location.href.match(/\d+$/)) {
+  currentUrlNumber = window.location.href.match(/\d+$/)[0]
+} else {
+  currentUrlNumber = 1
+}
 
 // First pageload render
 getRecentTracks(currentUrlNumber)

@@ -55,6 +55,10 @@ Doel: Data manipuleren. Code splitsen in modules. Reflecteren op eindresultaat.
 
 <!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
 
+Things I have to do (keep notice)
+
+Previous, next buttons when page reloads don't need to be hiding
+
 Links I used
 https://www.last.fm/api/show/user.getRecentTracks
 https://wesbos.com/tagged-template-literals/
