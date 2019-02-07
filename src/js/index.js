@@ -14,11 +14,13 @@ const currentUser = document.getElementById('current-user')
 
 let currentUrlNumber
 
-if (window.location.href.match(/\d+$/)) {
-  currentUrlNumber = window.location.href.match(/\d+$/)[0]
-} else {
-  currentUrlNumber = 1
-}
+// if (window.location.href.match(/\d+$/)) {
+//   currentUrlNumber = window.location.href.match(/\d+$/)[0]
+// } else {
+//   currentUrlNumber = 1
+// }
+
+currentUrlNumber = 1
 
 // First pageload render
 getRecentTracks(currentUrlNumber)

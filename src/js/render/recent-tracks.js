@@ -1,6 +1,6 @@
 'use strict'
 
-const main = document.getElementsByTagName('main')[0]
+const main = document.getElementById('main')
 
 function render(data) {
   localStorage.setItem('musicData', JSON.stringify(data))
