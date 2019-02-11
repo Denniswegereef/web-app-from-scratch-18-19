@@ -1,4 +1,4 @@
-## My spotify experience
+## The spotify experience
 
 ### Nice image here
 

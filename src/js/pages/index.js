@@ -1,13 +1,11 @@
-'use strict'
+import { getRecentTracks } from '../helper/api.js'
 
-const main = document.getElementById('main')
-
-function render(data) {
-  localStorage.setItem('musicData', JSON.stringify(data))
+async function index() {
+  let data = await getRecentTracks()
 
   const markup = `
   <ul class="tracks">
-  ${data
+  ${data.recenttracks.track
     .map(
       d => `
     <li class="track-single ${d['@attr'] ? 'now-playing' : ''}">
@@ -20,13 +18,13 @@ function render(data) {
         <h2>${d.name}</h2>
         <h3>${d.artist.name}</h3>
         <p>${d['@attr'] ? 'Now playing' : d.date['#text']}
-      </div>
+  </div>
     </li>`
     )
     .join('')}
   </ul>`
 
-  main.innerHTML = markup
+  return markup
 }
 
-export { render }
+export { index }

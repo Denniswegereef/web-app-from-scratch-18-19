@@ -23,14 +23,11 @@ class Router {
     })
   }
 
-  async render(fragment) {
-    if (fragment === '' || this.getRoute(fragment)) {
-    }
+  render(fragment) {
     // Still to do, use something else than innerHTML
     // Render index
     if (fragment === '') {
-      const result = await this.getRoute('#').page
-      this.routerView.innerHTML = result
+      this.routerView.innerHTML = this.getRoute('#').page
       return
     }
 
