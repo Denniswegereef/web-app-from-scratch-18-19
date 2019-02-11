@@ -1,6 +1,6 @@
 function error() {
   return `
-    <h1>This is a error page</h1>
+    <h1>Not found</h1>
   `
 }
 

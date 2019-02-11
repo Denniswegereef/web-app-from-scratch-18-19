@@ -1,7 +1,7 @@
 import { getRecentTracks } from '../helper/api.js'
 
-async function index() {
-  let data = await getRecentTracks()
+async function index(number = 1) {
+  let data = await getRecentTracks(number)
 
   const markup = `
   <ul class="tracks">

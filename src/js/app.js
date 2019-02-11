@@ -9,9 +9,10 @@ import { error } from './pages/error.js'
 // Define router
 const router = new Router()
 
-router.add('#', index())
-router.add('#random', random())
-router.add('#change', change())
-router.add('#error', error())
+router.add('#', index)
+router.add('#random', random)
+router.add('#change', change)
+router.add('#page/:id', index)
+router.add('#error', error)
 
 router.init()
