@@ -1,7 +1,6 @@
 class Router {
   constructor() {
     this.routes = []
-    this.root = `/src`
     this.routerView = document.getElementById('router-view')
   }
 
@@ -81,6 +80,7 @@ class Router {
 
     // Set listener for router changes
     window.addEventListener('hashchange', () => {
+      console.log('CHANGED ROUTE')
       this.navigate(window.location.hash)
     })
   }
