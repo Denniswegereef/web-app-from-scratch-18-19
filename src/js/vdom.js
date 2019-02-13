@@ -3,74 +3,54 @@ import { render } from './vdom/render.js'
 import { mount } from './vdom/mount.js'
 import { diff } from './vdom/diff.js'
 
-const items = [1, 2, 3]
+import { getRecentTracks } from './helper/api.js'
 
-// const createVApp = count =>
-//   createElement('div', {
-//     attrs: {
-//       id: 'app',
-//       dataCount: count // we use the count here
-//     },
-//     children: [
-//       'The current count is: ',
-//       String(count), // and here
-//       ...Array.from({ length: count }, () =>
-//         createElement('div', {
-//           attrs: {
-//             class: 'test'
-//           }
-//         })
-//       ),
-//       createElement('img', {
-//         attrs: {
-//           src: 'https://media.giphy.com/media/cuPm4p4pClZVC/giphy.gif'
-//         }
-//       })
-//     ]
-//   })
-let test = ['One', 'Two', 'Three']
+let lol = [1, 3, , 5]
+let vApp
+let $rootEl
+let $app
 
 function createVApp(data) {
-  return createElement('div', {
+  return createElement('ul', {
     attrs: {
-      class: 'holder'
+      class: 'app'
     },
     children: [
-      'current count',
-      createElement('h1', {
-        attrs: {
-          class: 'test'
-        },
-        children: [
-          `${data.map(item => {
-            return item
-          })}`,
-          createElement('h2', {
-            children: ['element 2']
-          })
-        ]
-      })
+      'ALL SONGS',
+      ...Array.from(data, x =>
+        createElement('li', {
+          children: [x.name]
+        })
+      )
     ]
   })
 }
 
-// First mount
-let vApp = createVApp(test)
-const $app = render(vApp)
-let $rootEl = mount($app, document.getElementById('app'))
+getRecentTracks(1)
+  .then(res => {
+    return res.recenttracks.track
+  })
+  .then(res => {
+    // First mount
+    vApp = createVApp(res)
+    $app = render(vApp)
+    $rootEl = mount($app, document.getElementById('app'))
+  })
 
-function updateDom(data) {
-  const vNewApp = createVApp(data)
-  const patch = diff(vApp, vNewApp)
+setInterval(function() {
+  getRecentTracks(1)
+    .then(res => {
+      return res.recenttracks.track
+    })
+    .then(res => {
+      console.log(res)
+      const vNewApp = createVApp(res)
+      const patch = diff(vApp, vNewApp)
 
-  // we might replace the whole $rootEl,
-  // so we want the patch will return the new $rootEl
-  $rootEl = patch($rootEl)
+      // we might replace the whole $rootEl,
+      // so we want the patch will return the new $rootEl
+      $rootEl = patch($rootEl)
 
-  vApp = vNewApp
-}
-
-setTimeout(function() {
-  test = [1, 34, 5, 6]
-  updateDom(test)
-}, 2000)
+      vApp = vNewApp
+    })
+}, 3000)
