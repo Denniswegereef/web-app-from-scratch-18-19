@@ -11,6 +11,10 @@
 
 Making a small interface based on the LastFM API. It shows what I've listened to and you can possible click through artists etc. And track what i've listened too.
 
+#### Diagram
+
+![diagram](diagram.png)
+
 ### install
 
 ```js
@@ -19,8 +23,9 @@ Clone and open that index.html and enjoy, no builders needed
 
 ### Feature list
 
-- Can fetch data from my user :D
-- Pagenation
+- Can fetch data from my user
+- Hash router
+- Virtual dom
 
 ### Api available data
 
@@ -42,5 +47,6 @@ MIT
 
 ### Links I used
 
+[Creating a virtual DOM](https://dev.to/ycmjason/building-a-simple-virtual-dom-from-scratch-3d05)
 [The API](https://www.last.fm/api/show/user.getRecentTracks)
 [Tagged template literals](https://wesbos.com/tagged-template-literals/)

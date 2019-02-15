@@ -10,47 +10,73 @@ let vApp
 let $rootEl
 let $app
 
-function createVApp(data) {
+function createTrackList(data) {
   return createElement('ul', {
     attrs: {
       class: 'app'
     },
     children: [
-      'ALL SONGS',
-      ...Array.from(data, x =>
+      createElement('h1', {
+        children: ['Listened tracks']
+      }),
+      ...Array.from(data, track =>
         createElement('li', {
-          children: [x.name]
+          attrs: {
+            class: 'track-single'
+          },
+          children: [
+            createElement('img', {
+              attrs: {
+                src: track.image[2]['#text']
+                  ? track.image[2]['#text']
+                  : 'https://via.placeholder.com/100'
+              }
+            }),
+            createElement('div', {
+              children: [
+                createElement('h2', {
+                  children: [track.name]
+                }),
+                createElement('h3', {
+                  children: [track.artist.name]
+                })
+              ]
+            })
+          ]
         })
       )
     ]
   })
 }
 
-getRecentTracks(1)
+getRecentTracks()
   .then(res => {
     return res.recenttracks.track
   })
   .then(res => {
     // First mount
-    vApp = createVApp(res)
+    vApp = createTrackList(res)
     $app = render(vApp)
     $rootEl = mount($app, document.getElementById('app'))
   })
 
+// Interval every 10 seconds for a update
 setInterval(function() {
-  getRecentTracks(1)
+  getRecentTracks()
     .then(res => {
       return res.recenttracks.track
     })
     .then(res => {
-      console.log(res)
-      const vNewApp = createVApp(res)
+      // Recreate with new data the tracklist
+      const vNewApp = createTrackList(res)
+
+      // Check for difference in our app
       const patch = diff(vApp, vNewApp)
 
-      // we might replace the whole $rootEl,
-      // so we want the patch will return the new $rootEl
+      // Patch the elements when sometning is different
       $rootEl = patch($rootEl)
 
+      // Set new created app as default
       vApp = vNewApp
     })
-}, 3000)
+}, 10000)

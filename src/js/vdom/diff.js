@@ -1,5 +1,7 @@
 import { render } from '../vdom/render.js'
 
+// Different tool check for difference in tree
+
 const zip = (xs, ys) => {
   const zipped = []
   for (let i = 0; i < Math.min(xs.length, ys.length); i++) {
@@ -8,6 +10,7 @@ const zip = (xs, ys) => {
   return zipped
 }
 
+// Find different attributes in parent element
 const diffAttrs = (oldAttrs, newAttrs) => {
   const patches = []
 
@@ -37,6 +40,7 @@ const diffAttrs = (oldAttrs, newAttrs) => {
   }
 }
 
+// Find difference in childeren from element
 const diffChildren = (oldVChildren, newVChildren) => {
   const childPatches = []
   oldVChildren.forEach((oldVChild, i) => {
@@ -65,41 +69,32 @@ const diffChildren = (oldVChildren, newVChildren) => {
   }
 }
 
+// Find difference in old virtual tree and new virtual tree
 const diff = (oldVTree, newVTree) => {
-  // let's assume oldVTree is not undefined!
+  // If there is no old virtual tgree
   if (newVTree === undefined) {
     return $node => {
       $node.remove()
-      // the patch should return the new root node.
-      // since there is none in this case,
-      // we will just return undefined.
       return undefined
     }
   }
 
   if (typeof oldVTree === 'string' || typeof newVTree === 'string') {
     if (oldVTree !== newVTree) {
-      // could be 2 cases:
-      // 1. both trees are string and they have different values
-      // 2. one of the trees is text node and
-      //    the other one is elem node
-      // Either case, we will just render(newVTree)!
+      // Render new tree
       return $node => {
         const $newNode = render(newVTree)
         $node.replaceWith($newNode)
         return $newNode
       }
     } else {
-      // this means that both trees are string
-      // and they have the same values
+      // Strings have the same value
       return $node => $node
     }
   }
 
   if (oldVTree.tagName !== newVTree.tagName) {
-    // we assume that they are totally different and
-    // will not attempt to find the differences.
-    // simply render the newVTree and mount it.
+    // Render a new tree and replace it
     return $node => {
       const $newNode = render(newVTree)
       $node.replaceWith($newNode)

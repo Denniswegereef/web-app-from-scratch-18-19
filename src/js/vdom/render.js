@@ -1,3 +1,4 @@
+//Rennder elements and childeren correctly
 function renderElem({ tagName, attrs, children }) {
   const $el = document.createElement(tagName)
 
@@ -19,6 +20,7 @@ function render(vNode) {
     return document.createTextNode(vNode)
   }
 
+  //
   return renderElem(vNode)
 }
 

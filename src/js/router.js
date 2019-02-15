@@ -80,7 +80,6 @@ class Router {
 
     // Set listener for router changes
     window.addEventListener('hashchange', () => {
-      console.log('CHANGED ROUTE')
       this.navigate(window.location.hash)
     })
   }
