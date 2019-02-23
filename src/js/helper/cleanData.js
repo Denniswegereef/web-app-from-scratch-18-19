@@ -64,8 +64,6 @@ const cleanSingleTrack = data => {
 
   // If data is found for the album append
   if (i.album) {
-    console.log('Data found for album')
-
     item.album = {
       artist: i.album,
       title: i.album,
@@ -78,8 +76,6 @@ const cleanSingleTrack = data => {
 
   // If data is found for the artist append
   if (i.artist) {
-    console.log('Data found for artist')
-
     item.artist = {
       name: i.artist.name,
       id: i.artist.mbid ? i.artist.mbid : false,

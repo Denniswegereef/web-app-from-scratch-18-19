@@ -1,21 +1,36 @@
 'use strict'
+
+const key = '558413ce30002869acf1d2e2d9c2047b',
+  url = 'https://ws.audioscrobbler.com/2.0/'
+
 // Get recent tracks, possible to switch user and the limit
-function getLastFm(
+const getLastFm = (
   currentPage = 1,
   method = 'user.getrecenttracks',
   additional = ''
-) {
-  const key = '558413ce30002869acf1d2e2d9c2047b',
-    url = 'https://ws.audioscrobbler.com/2.0/',
-    user = 'denniswegereef',
+) => {
+  const user = localStorage.getItem('user')
+      ? localStorage.getItem('user')
+      : 'denniswegereef',
     limit = 19
-
+  console.log(user)
   const totalRequest = `${url}?method=${method}&user=${user}&api_key=${key}&format=json&page=${currentPage}&extended=1&limit=${limit}${additional}`
-  console.log(totalRequest)
+
   return fetch(totalRequest)
     .then(res => res.json())
-    .then(res => res)
     .catch(err => console.error)
 }
 
-export { getLastFm }
+const checkUser = user => {
+  const totalRequest = `${url}?method=user.getinfo&user=${user}&api_key=${key}&format=json`
+
+  return fetch(totalRequest).then(res => {
+    if (res.status === 404) {
+      return res
+    }
+
+    return res.json()
+  })
+}
+
+export { getLastFm, checkUser }

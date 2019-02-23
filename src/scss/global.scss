@@ -13,10 +13,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
   background-color: black;
   overflow-x: hidden;
+  padding-left: 4vw;
+  padding-right: 4vw;
 }
 
 #background {
@@ -25,25 +25,42 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  filter: blur(18px) brightness(85%);
+  filter: blur(18px) brightness(70%);
+  transition: all 1s;
   &-one,
   &-two {
+    transition: opacity 1s;
     height: 100%;
     width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    top: 0;
+    left: 0;
+    position: fixed;
   }
 }
 
+.hide {
+  opacity: 0;
+}
 header,
 main {
   max-width: 90rem;
   width: 100%;
-  padding: 0 1rem;
   z-index: 10;
 }
 
 a {
   text-decoration: none;
   color: #fff;
+}
+
+#router-view {
+  transition: all 1s;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
 }

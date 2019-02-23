@@ -20,7 +20,6 @@ class Router {
   navigate(fragment) {
     // Check if normal route
     if (fragment === '' || this.getRoute(fragment)) {
-      console.log('normal route')
       this.render(false, fragment)
       return
     }
@@ -50,6 +49,15 @@ class Router {
   }
 
   async render(fragmentNumber, fragment) {
+    let self = this
+    self.routerView.classList.remove('show')
+    self.routerView.classList.add('hide')
+
+    setTimeout(function() {
+      self.routerView.classList.remove('hide')
+      self.routerView.classList.add('show')
+    }, 1000)
+
     // Still to do, use something else than innerHTML
     if (fragment === '' || this.getRoute(fragment)) {
       const result = await this.getRoute(
@@ -76,7 +84,6 @@ class Router {
   init() {
     // Init when page loads
     this.navigate(window.location.hash)
-    console.log(this.routes)
 
     // Set listener for router changes
     window.addEventListener('hashchange', () => {

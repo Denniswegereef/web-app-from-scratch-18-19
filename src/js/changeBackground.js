@@ -1,7 +1,21 @@
-function setBackground(background) {
-  let backgroundOne = document.getElementById('background-one')
+let active
+let backgroundOne = document.getElementById('background-one')
+let backgroundTwo = document.getElementById('background-two')
 
-  backgroundOne.style.backgroundImage = `url('${background}')`
+const setBackground = background => {
+  active ? (active = false) : (active = true)
+
+  if (active) {
+    backgroundOne.classList.remove('hide')
+    backgroundOne.src = background
+    backgroundTwo.classList.add('hide')
+  }
+
+  if (!active) {
+    backgroundTwo.classList.remove('hide')
+    backgroundTwo.src = background
+    backgroundOne.classList.add('hide')
+  }
 }
 
 const changeBackground = record => {

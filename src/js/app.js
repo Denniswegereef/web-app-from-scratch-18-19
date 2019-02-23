@@ -12,6 +12,10 @@ import { vdynamic } from './pages/vdynamic.js'
 
 // Functionallity
 import { changeBackground } from './changeBackground.js'
+//import { setLoc//al } from './helper/localstorage.js'
+
+// Set localstorage
+// setLocal('Denniswegereef')
 
 // Define router
 const router = new Router()
@@ -34,5 +38,4 @@ const observer = new MutationObserver(changeBackground).observe(
   routerView,
   config
 )
-
 // configuration of the observer:
