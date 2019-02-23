@@ -26,7 +26,7 @@ const checkUser = user => {
 
   return fetch(totalRequest).then(res => {
     if (res.status === 404) {
-      return res
+      return res.json()
     }
 
     return res.json()

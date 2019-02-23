@@ -17,15 +17,22 @@
 
     <header>
       <div class="user" id>
-        Denniswegereef
+        <input type="text" id="userInput" value="test" />
       </div>
 
       <ul class="menu">
-        <li class="menu-item"><a href="#">Recent activity</a></li>
-        <li class="menu-item"><a href="#artists">Favorite artists</a></li>
-        <li class="menu-item"><a href="#tracks">Most listened songs</a></li>
+        <li class="menu-item" data-active="#">
+          <a href="#">Recent activity</a>
+        </li>
+        <li class="menu-item" data-active="#artists">
+          <a href="#artists">Favorite artists</a>
+        </li>
+        <li class="menu-item" data-active="#tracks">
+          <a href="#tracks">Most listened songs</a>
+        </li>
       </ul>
     </header>
+
     <main id="router-view" class="hide">
       Loading page..
     </main>

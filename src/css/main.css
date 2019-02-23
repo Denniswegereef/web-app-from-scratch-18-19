@@ -55,6 +55,9 @@ a {
 .show {
   opacity: 1; }
 
+h1 {
+  color: #fff; }
+
 @font-face {
   font-family: 'Karla', sans-serif;
   src: url(../fonts/Karla/Karla-Bold.ttf) format("ttf");
@@ -85,7 +88,20 @@ header {
     header .menu-item {
       margin-left: 1rem; }
       header .menu-item a {
-        color: #fff; }
+        transition: all 0.2;
+        scolor: #fff; }
+  header .active a {
+    font-weight: bold;
+    text-decoration: underline; }
+  header input {
+    background: none;
+    border: 0px solid;
+    font-size: 2rem;
+    transition: all 0.4s;
+    color: #fff;
+    font-weight: bold; }
+    header input:focus {
+      width: 8rem; }
 
 #router-view {
   padding-top: 2rem;
@@ -122,7 +138,7 @@ header {
       font-size: 0.9rem;
       font-style: italic; }
     .recent-tracks .single-item:hover {
-      transform: translateY(-1rem) scale(1.02); }
+      transform: translateY(-1rem); }
 
 .singleContent {
   padding: 1rem;

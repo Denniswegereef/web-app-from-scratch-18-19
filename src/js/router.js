@@ -1,7 +1,8 @@
 class Router {
   constructor() {
     this.routes = []
-    this.routerView = document.getElementById('router-view')
+    ;(this.routerView = document.getElementById('router-view')),
+      (this.menuItems = document.getElementsByClassName('menu-item'))
   }
 
   checkDynamicUrl(url) {
@@ -15,6 +16,28 @@ class Router {
       dynamic = true
     }
     this.routes.push({ url, page, dynamic })
+  }
+
+  changeActive(fragment) {
+    console.log(fragment)
+    console.log('change active')
+
+    for (let el of this.menuItems) {
+      el.classList.remove('active')
+      if (fragment == el.dataset.active) {
+        el.classList.add('active')
+      }
+
+      //console.log('hi' + el.dataset.active)
+      if (el.dataset.active === '#' && fragment < 2) {
+        el.classList.add('active')
+      }
+      // if (el.data === '#' || fragment === ' ') {
+      //   console.log('hello')
+      //   el.classList.add('active')
+      //   return
+      // }
+    }
   }
 
   navigate(fragment) {
@@ -49,17 +72,20 @@ class Router {
   }
 
   async render(fragmentNumber, fragment) {
+    this.changeActive(fragment)
+
     let self = this
-    self.routerView.classList.remove('show')
     self.routerView.classList.add('hide')
 
-    setTimeout(function() {
-      self.routerView.classList.remove('hide')
-      self.routerView.classList.add('show')
-    }, 1000)
-
-    // Still to do, use something else than innerHTML
     if (fragment === '' || this.getRoute(fragment)) {
+      self.routerView.classList.remove('show')
+      self.routerView.classList.add('hide')
+
+      await setTimeout(function() {
+        self.routerView.classList.remove('hide')
+        self.routerView.classList.add('show')
+      }, 1000)
+
       const result = await this.getRoute(
         fragment === '' ? '#' : fragment
       ).page()
@@ -70,6 +96,8 @@ class Router {
 
     // Render dynamic route
     if (fragmentNumber) {
+      self.routerView.classList.remove('hide')
+
       const result = await this.routes[3].page(fragmentNumber)
       this.routerView.innerHTML = result
       return
