@@ -24,7 +24,9 @@ async function index(number = 1) {
     .join('')}
   </ul>`
 
-  return markup
+  const markuptwo = 'index'
+
+  return markuptwo
 }
 
 export { index }

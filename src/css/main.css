@@ -1,47 +1,40 @@
+@charset "UTF-8";
 :root {
   --default-color: #fff33d;
   --second-color: #d32422;
   --black-color: #000;
-  --white-color: #f6f6f6;
-}
+  --white-color: #f6f6f6; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   width: 600px;
   margin: 0 auto;
-  background-color: var(--white-color);
-}
+  background-color: var(--white-color); }
 
 main {
   width: 600px;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
 ul {
   list-style-type: none;
-  padding: 0;
-}
+  padding: 0; }
 
 p {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 h1 {
-  color: var(--black-color);
-}
+  color: var(--black-color); }
 
 h2 {
   color: var(--black-color);
   font-size: 1.3rem;
-  margin: 0;
-}
+  margin: 0; }
 
 h3 {
   color: var(--black-color);
   font-size: 1.1rem;
-  margin: 0;
-}
+  margin: 0; }
 
 .track-single {
   display: flex;
@@ -49,23 +42,20 @@ h3 {
   height: 100px;
   margin-bottom: 10px;
   transition: transform 0.2s;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .track-single img {
   height: 100%;
-  margin-right: 10px;
-}
+  margin-right: 10px; }
 
 .track-single:hover {
-  transform: translateX(-20px);
-}
+  transform: translateX(-20px); }
 
 .now-playing p {
   position: relative;
   overflow: visible;
-  padding-left: 25px;
-}
+  padding-left: 25px; }
+
 .now-playing p:after {
   content: '🎺';
   position: absolute;
@@ -74,14 +64,11 @@ h3 {
   height: 10px;
   width: 10px;
   border-radius: 15px;
-  animation: beat 0.3s infinite alternate;
-}
+  animation: beat 0.3s infinite alternate; }
 
 @keyframes beat {
   to {
-    transform: scale(1.2) rotate(20deg);
-  }
-}
+    transform: scale(1.2) rotate(20deg); } }
 
 button {
   border: 2px solid var(--black-color);
@@ -90,40 +77,36 @@ button {
   padding: 10px 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.5s;
-}
+  transition: transform 0.5s; }
 
 button:hover {
   background-color: var(--black-color);
-  color: #fff;
-}
+  color: #fff; }
 
 button:active {
-  transform: translateX(20px);
-}
+  transform: translateX(20px); }
 
 button:focus {
-  outline: 0;
-}
+  outline: 0; }
 
 .filters p {
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
 
 #previous-page {
-  display: none;
-}
+  display: none; }
 
 #current-user {
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .image {
-  max-width: 200px;
-}
+  max-width: 200px; }
 
 .test {
   height: 40px;
   width: 40px;
-  background-color: red;
-}
+  background-color: red; }
+  .test p {
+    color: red; }
+
+body {
+  background-color: red; }
