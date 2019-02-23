@@ -3,7 +3,7 @@ import { render } from '../vdom/render.js'
 import { mount } from '../vdom/mount.js'
 import { diff } from '../vdom/diff.js'
 
-import { getRecentTracks } from '../helper/api.js'
+import { getLastFm } from '../helper/api.js'
 
 let vApp
 let $rootEl
@@ -49,7 +49,7 @@ const createTrackList = data => {
 }
 
 const virtualdom = (page = 1) => {
-  getRecentTracks(page)
+  getLastFm(page)
     .then(res => {
       return res.recenttracks.track
     })

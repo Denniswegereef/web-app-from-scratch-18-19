@@ -16,6 +16,7 @@ body {
   padding-left: 1rem;
   padding-right: 1rem;
   background-color: black;
+  overflow-x: hidden;
 }
 
 #background {
@@ -34,14 +35,15 @@ body {
   }
 }
 
-.show {
-  opacity: 1 !important;
-}
-
 header,
 main {
   max-width: 90rem;
   width: 100%;
   padding: 0 1rem;
   z-index: 10;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
 }

@@ -1,3 +1,4 @@
+// Clean recent tracks
 const cleanRecent = data => {
   return data.recenttracks.track.map(i => {
     return {
@@ -9,11 +10,14 @@ const cleanRecent = data => {
         big: i.image[3]['#text']
       },
       date: i['@attr'] ? 'Currently playing' : i.date['#text'],
-      id: i.mbid
+      formatArtist: format(i.artist.name),
+      formatSong: format(i.name),
+      slug: `&artist=${format(i.artist.name)}&track=${format(i.name)}`
     }
   })
 }
 
+// Clean list of artists
 const cleanArtists = data => {
   return data.topartists.artist.map(i => {
     return {
@@ -28,6 +32,7 @@ const cleanArtists = data => {
   })
 }
 
+// Clean list of tracks
 const cleanTracks = data => {
   console.log(data)
   return data.toptracks.track.map(i => {
@@ -40,10 +45,56 @@ const cleanTracks = data => {
         big: i.image[3]['#text']
       },
       playcount: i.playcount,
-      id: i.mbid
+      formatArtist: format(i.artist.name),
+      formatSong: format(i.name),
+      slug: `&artist=${format(i.artist.name)}&track=${format(i.name)}`
     }
   })
   return data
 }
 
-export { cleanRecent, cleanArtists, cleanTracks }
+// Some magic for building up the data for a single track
+const cleanSingleTrack = data => {
+  let i = data.track
+  let item = {
+    song: i.name,
+    listeners: Number(i.listeners),
+    tags: i.toptags.tag.map(tag => tag.name)
+  }
+
+  // If data is found for the album append
+  if (i.album) {
+    console.log('Data found for album')
+
+    item.album = {
+      artist: i.album,
+      title: i.album,
+      image: {
+        small: i.album ? i.album.image[2]['#text'] : false,
+        big: i.album ? i.album.image[3]['#text'] : false
+      }
+    }
+  }
+
+  // If data is found for the artist append
+  if (i.artist) {
+    console.log('Data found for artist')
+
+    item.artist = {
+      name: i.artist.name,
+      id: i.artist.mbid ? i.artist.mbid : false,
+      image: {
+        small: i.album ? i.album.image[2]['#text'] : false,
+        big: i.album ? i.album.image[3]['#text'] : false
+      }
+    }
+  }
+
+  return item
+}
+
+const format = text => {
+  return text.replace(/\s/g, '+').toLowerCase()
+}
+
+export { cleanRecent, cleanArtists, cleanTracks, cleanSingleTrack }

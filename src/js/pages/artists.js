@@ -1,8 +1,8 @@
-import { getRecentTracks } from '../helper/api.js'
+import { getLastFm } from '../helper/api.js'
 import { cleanArtists } from '../helper/cleanData.js'
 
 async function artists(number = 1) {
-  let data = await getRecentTracks(number, 'user.getTopArtists').then(res => {
+  let data = await getLastFm(number, 'user.getTopArtists').then(res => {
     return cleanArtists(res)
   })
 
