@@ -1,0 +1,47 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: black;
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  filter: blur(18px) brightness(85%);
+  &-one,
+  &-two {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.show {
+  opacity: 1 !important;
+}
+
+header,
+main {
+  max-width: 90rem;
+  width: 100%;
+  padding: 0 1rem;
+  z-index: 10;
+}

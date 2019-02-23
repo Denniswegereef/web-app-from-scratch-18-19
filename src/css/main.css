@@ -1,112 +1,103 @@
-@charset "UTF-8";
-:root {
-  --default-color: #fff33d;
-  --second-color: #d32422;
-  --black-color: #000;
-  --white-color: #f6f6f6; }
+html {
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  width: 600px;
-  margin: 0 auto;
-  background-color: var(--white-color); }
-
-main {
-  width: 600px;
-  margin: 0 auto; }
-
-ul {
-  list-style-type: none;
-  padding: 0; }
-
-p {
   margin: 0;
-  padding: 0; }
+  padding-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: black; }
 
-h1 {
-  color: var(--black-color); }
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  filter: blur(18px) brightness(85%); }
+  #background-one, #background-two {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover; }
 
-h2 {
-  color: var(--black-color);
-  font-size: 1.3rem;
-  margin: 0; }
+.show {
+  opacity: 1 !important; }
 
-h3 {
-  color: var(--black-color);
-  font-size: 1.1rem;
-  margin: 0; }
+header,
+main {
+  max-width: 90rem;
+  width: 100%;
+  padding: 0 1rem;
+  z-index: 10; }
 
-.track-single {
+@font-face {
+  font-family: 'Karla', sans-serif;
+  src: url(../fonts/Karla/Karla-Bold.ttf) format("ttf");
+  font-weight: 600;
+  font-style: bold; }
+
+@font-face {
+  font-family: 'Karla', sans-serif;
+  src: url(../fonts/Karla/Karla-Regular.ttf) format("ttf");
+  font-weight: 400; }
+
+@font-face {
+  font-family: 'Karla', sans-serif;
+  src: url(../fonts/Karla/Karla-Italic.ttf) format("ttf");
+  font-weight: 400;
+  font-style: italic; }
+
+header {
   display: flex;
   align-items: center;
-  height: 100px;
-  margin-bottom: 10px;
-  transition: transform 0.2s;
-  cursor: pointer; }
+  font-family: 'Karla', sans-serif; }
+  header .menu {
+    list-style-type: none;
+    display: flex; }
+    header .menu-item {
+      margin-left: 1rem; }
+      header .menu-item a {
+        color: #fff; }
 
-.track-single img {
-  height: 100%;
-  margin-right: 10px; }
+#router-view {
+  padding-top: 2rem;
+  min-height: 40rem;
+  overflow-y: scroll; }
 
-.track-single:hover {
-  transform: translateX(-20px); }
-
-.now-playing p {
-  position: relative;
-  overflow: visible;
-  padding-left: 25px; }
-
-.now-playing p:after {
-  content: '🎺';
-  position: absolute;
-  left: 2px;
-  top: -5px;
-  height: 10px;
-  width: 10px;
-  border-radius: 15px;
-  animation: beat 0.3s infinite alternate; }
-
-@keyframes beat {
-  to {
-    transform: scale(1.2) rotate(20deg); } }
-
-button {
-  border: 2px solid var(--black-color);
-  background-color: var(--white-color);
-  border-radius: 0;
-  padding: 10px 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.5s; }
-
-button:hover {
-  background-color: var(--black-color);
-  color: #fff; }
-
-button:active {
-  transform: translateX(20px); }
-
-button:focus {
-  outline: 0; }
-
-.filters p {
-  margin-bottom: 10px; }
-
-#previous-page {
-  display: none; }
-
-#current-user {
-  font-weight: bold; }
-
-.image {
-  max-width: 200px; }
-
-.test {
-  height: 40px;
-  width: 40px;
-  background-color: red; }
-  .test p {
-    color: red; }
-
-body {
-  background-color: red; }
+.recent-tracks {
+  display: flex;
+  list-style-type: none; }
+  .recent-tracks .single-item {
+    margin-right: 2rem;
+    transition: transform 0.2s;
+    cursor: pointer; }
+    .recent-tracks .single-item img {
+      width: 18rem; }
+    .recent-tracks .single-item h2,
+    .recent-tracks .single-item h3,
+    .recent-tracks .single-item p {
+      color: #fff;
+      text-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+      font-family: 'Karla', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300; }
+    .recent-tracks .single-item h2 {
+      font-weight: bold;
+      font-size: 1.4rem; }
+    .recent-tracks .single-item h3 {
+      opacity: 0.9;
+      font-size: 1.2rem; }
+    .recent-tracks .single-item p {
+      font-size: 0.9rem;
+      font-style: italic; }
+    .recent-tracks .single-item:hover {
+      transform: translateY(-10px); }

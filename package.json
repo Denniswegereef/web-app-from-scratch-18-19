@@ -4,6 +4,7 @@
   "description": "In dit vak gaan we een web app maken zonder frameworks of onnodige libraries, dus zoveel mogelijk met native HTML, CSS & JavaScript. Het eindproduct is een modulair opgezet prototype voor een single page web app. Data wordt opgehaald uit een externe API, waar nodig gemanipuleerd en vervolgens getoond in de Web App. Je leert hoe je structuur aanbrengt in je code en hoe je hiermee 'from scratch' een (prototype voor een) web app maakt. Met deze kennis begrijp je daarnaast beter hoe bestaande api’s, libraries en frameworks werken.",
   "main": "index.js",
   "devDependencies": {
+    "live-server": "^1.2.1",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4",
@@ -13,7 +14,9 @@
     "format": "prettier --write \"src/**/*.js\"",
     "xo": "xo",
     "sass": "node_modules/.bin/node-sass --include-path scss src/scss/main.scss src/css/main.css",
-    "watch": "node_modules/.bin/nodemon -e scss -x npm run sass"
+    "sass-watch": "node_modules/.bin/nodemon -e scss -x npm run sass",
+    "server": "node_modules/.bin/live-server .",
+    "watch": "npm run sass-watch & npm run server"
   },
   "prettier": {
     "semi": false,

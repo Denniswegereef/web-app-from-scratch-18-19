@@ -1,0 +1,42 @@
+#router-view {
+  padding-top: 2rem;
+  min-height: 40rem;
+  overflow-y: scroll;
+}
+
+.recent-tracks {
+  display: flex;
+  list-style-type: none;
+  .single-item {
+    margin-right: 2rem;
+    transition: transform 0.2s;
+    cursor: pointer;
+    img {
+      width: 18rem;
+    }
+    h2,
+    h3,
+    p {
+      color: #fff;
+      text-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+      font-family: 'Karla', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+    h2 {
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+    h3 {
+      opacity: 0.9;
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+    &:hover {
+      transform: translateY(-10px);
+    }
+  }
+}

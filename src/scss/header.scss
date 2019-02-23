@@ -1,0 +1,19 @@
+header {
+  display: flex;
+  align-items: center;
+  font-family: 'Karla', sans-serif;
+
+  .user {
+  }
+
+  .menu {
+    list-style-type: none;
+    display: flex;
+    &-item {
+      margin-left: 1rem;
+      a {
+        color: #fff;
+      }
+    }
+  }
+}

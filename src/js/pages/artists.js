@@ -1,10 +1,12 @@
 import { getRecentTracks } from '../helper/api.js'
-import { cleanRecent } from '../helper/cleanData.js'
+import { cleanArtists } from '../helper/cleanData.js'
 
-async function index(number = 1) {
-  let data = await getRecentTracks(number).then(res => {
-    return cleanRecent(res)
+async function artists(number = 1) {
+  let data = await getRecentTracks(number, 'user.getTopArtists').then(res => {
+    return cleanArtists(res)
   })
+
+  console.log(data)
 
   const markup = `
   <ul class="recent-tracks">
@@ -16,9 +18,8 @@ async function index(number = 1) {
         d.image.big ? d.image.big : 'https://via.placeholder.com/100'
       }" alt="" />
 
-        <h2>${d.song}</h2>
-        <h3>${d.artist}</h3>
-        <p>${d.date}
+        <h2>${d.artist}</h2>
+        <h3>${d.playcount}</h3>
 
     </li>`
     )
@@ -28,4 +29,4 @@ async function index(number = 1) {
   return markup
 }
 
-export { index }
+export { artists }

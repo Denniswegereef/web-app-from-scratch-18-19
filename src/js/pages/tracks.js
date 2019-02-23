@@ -1,9 +1,9 @@
 import { getRecentTracks } from '../helper/api.js'
-import { cleanRecent } from '../helper/cleanData.js'
+import { cleanTracks } from '../helper/cleanData.js'
 
-async function index(number = 1) {
-  let data = await getRecentTracks(number).then(res => {
-    return cleanRecent(res)
+async function tracks(number = 1) {
+  let data = await getRecentTracks(number, 'user.getTopTracks').then(res => {
+    return cleanTracks(res)
   })
 
   const markup = `
@@ -18,7 +18,7 @@ async function index(number = 1) {
 
         <h2>${d.song}</h2>
         <h3>${d.artist}</h3>
-        <p>${d.date}
+        <p>Played: ${d.playcount}
 
     </li>`
     )
@@ -28,4 +28,4 @@ async function index(number = 1) {
   return markup
 }
 
-export { index }
+export { tracks }
