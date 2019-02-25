@@ -47,13 +47,7 @@ a {
   color: #fff; }
 
 #router-view {
-  transition: all 1s; }
-
-.hide {
-  opacity: 0; }
-
-.show {
-  opacity: 1; }
+  transition: all 2s; }
 
 h1 {
   color: #fff; }
@@ -90,10 +84,13 @@ header {
       header .menu-item a {
         transition: all 0.2;
         scolor: #fff; }
+      header .menu-item:hover {
+        text-decoration: underline; }
   header .active a {
     font-weight: bold;
     text-decoration: underline; }
   header input {
+    padding-left: 1rem;
     background: none;
     border: 0px solid;
     font-size: 2rem;

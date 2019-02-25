@@ -17,6 +17,9 @@ header {
         transition: all 0.2;
         scolor: #fff;
       }
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -28,6 +31,7 @@ header {
   }
 
   input {
+    padding-left: 1rem;
     background: none;
     border: 0px solid;
     font-size: 2rem;

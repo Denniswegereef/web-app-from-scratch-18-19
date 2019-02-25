@@ -9,12 +9,15 @@ const getLastFm = (
   method = 'user.getrecenttracks',
   additional = ''
 ) => {
-  const user = localStorage.getItem('user')
-      ? localStorage.getItem('user')
+  const user = localStorage.getItem('currentUser')
+      ? JSON.parse(localStorage.getItem('currentUser'))
       : 'denniswegereef',
     limit = 19
+
   console.log(user)
-  const totalRequest = `${url}?method=${method}&user=${user}&api_key=${key}&format=json&page=${currentPage}&extended=1&limit=${limit}${additional}`
+  const totalRequest = `${url}?method=${method}&user=${
+    user.name
+  }&api_key=${key}&format=json&page=${currentPage}&extended=1&limit=${limit}${additional}`
 
   return fetch(totalRequest)
     .then(res => res.json())

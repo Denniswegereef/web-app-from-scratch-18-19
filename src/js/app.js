@@ -13,10 +13,7 @@ import { vdynamic } from './pages/vdynamic.js'
 
 // Functionallity
 import { changeBackground } from './changeBackground.js'
-import { setLocal } from './helper/localstorage.js'
-
-// Set localstorage
-setLocal('Denniswegereef')
+import { localStorageHandler } from './helper/localstorage.js'
 
 // Define router
 const router = new Router()
@@ -31,6 +28,10 @@ router.add('#welcome', welcome)
 router.add('#error', error)
 
 router.init()
+
+// Set localstorage
+const local = new localStorageHandler(router)
+local.init('Denniswegereef')
 
 // select the target node
 const routerView = document.querySelector('#router-view')

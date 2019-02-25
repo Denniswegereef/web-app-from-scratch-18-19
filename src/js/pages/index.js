@@ -6,8 +6,6 @@ async function index(number = 1) {
     return cleanRecent(res)
   })
 
-  console.log(data)
-
   const markup = `
   <ul class="recent-tracks">
   ${data

@@ -34,7 +34,6 @@ const cleanArtists = data => {
 
 // Clean list of tracks
 const cleanTracks = data => {
-  console.log(data)
   return data.toptracks.track.map(i => {
     return {
       rank: i['@attr'].rank,

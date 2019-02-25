@@ -6,8 +6,6 @@ async function artists(number = 1) {
     return cleanArtists(res)
   })
 
-  console.log(data)
-
   const markup = `
   <ul class="recent-tracks">
   ${data

@@ -19,24 +19,15 @@ class Router {
   }
 
   changeActive(fragment) {
-    console.log(fragment)
-    console.log('change active')
-
     for (let el of this.menuItems) {
       el.classList.remove('active')
       if (fragment == el.dataset.active) {
         el.classList.add('active')
       }
 
-      //console.log('hi' + el.dataset.active)
       if (el.dataset.active === '#' && fragment < 2) {
         el.classList.add('active')
       }
-      // if (el.data === '#' || fragment === ' ') {
-      //   console.log('hello')
-      //   el.classList.add('active')
-      //   return
-      // }
     }
   }
 
@@ -75,17 +66,8 @@ class Router {
     this.changeActive(fragment)
 
     let self = this
-    self.routerView.classList.add('hide')
 
     if (fragment === '' || this.getRoute(fragment)) {
-      self.routerView.classList.remove('show')
-      self.routerView.classList.add('hide')
-
-      await setTimeout(function() {
-        self.routerView.classList.remove('hide')
-        self.routerView.classList.add('show')
-      }, 1000)
-
       const result = await this.getRoute(
         fragment === '' ? '#' : fragment
       ).page()
@@ -96,8 +78,6 @@ class Router {
 
     // Render dynamic route
     if (fragmentNumber) {
-      self.routerView.classList.remove('hide')
-
       const result = await this.routes[3].page(fragmentNumber)
       this.routerView.innerHTML = result
       return
@@ -107,6 +87,10 @@ class Router {
   error() {
     // Render 404 error
     this.routerView.innerHTML = this.getRoute('#error').page()
+  }
+
+  reload() {
+    this.navigate(window.location.hash)
   }
 
   init() {
