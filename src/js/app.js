@@ -5,7 +5,6 @@ import { index } from './pages/index.js'
 import { artists } from './pages/artists.js'
 import { tracks } from './pages/tracks.js'
 import { singleTrack } from './pages/singleTrack.js'
-import { welcome } from './pages/welcome.js'
 import { error } from './pages/error.js'
 
 import { virtualdom } from './pages/virtualdom.js'
@@ -22,9 +21,10 @@ router.add('#', index)
 router.add('#artists', artists)
 router.add('#tracks', tracks)
 router.add('#track/:id', singleTrack)
-router.add('#welcome', welcome)
+
 // router.add('#vdynamic/:id', vdynamic)
 //router.add('#virtualdom', virtualdom)
+
 router.add('#error', error)
 
 router.init()
