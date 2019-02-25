@@ -55,37 +55,14 @@ const cleanTracks = data => {
 // Some magic for building up the data for a single track
 const cleanSingleTrack = data => {
   let i = data.track
-  let item = {
-    song: i.name,
-    listeners: Number(i.listeners),
+  console.log(i)
+  return {
+    track: i.name,
+    artist: i.artist.name,
+    playcount: i.playcount,
+    listeners: i.listeners,
     tags: i.toptags.tag.map(tag => tag.name)
   }
-
-  // If data is found for the album append
-  if (i.album) {
-    item.album = {
-      artist: i.album,
-      title: i.album,
-      image: {
-        small: i.album ? i.album.image[2]['#text'] : false,
-        big: i.album ? i.album.image[3]['#text'] : false
-      }
-    }
-  }
-
-  // If data is found for the artist append
-  if (i.artist) {
-    item.artist = {
-      name: i.artist.name,
-      id: i.artist.mbid ? i.artist.mbid : false,
-      image: {
-        small: i.album ? i.album.image[2]['#text'] : false,
-        big: i.album ? i.album.image[3]['#text'] : false
-      }
-    }
-  }
-
-  return item
 }
 
 const format = text => {

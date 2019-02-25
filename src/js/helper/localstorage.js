@@ -94,6 +94,8 @@ class localStorageHandler {
   init(name) {
     this.pageLoad(name)
 
+    this.resizeInput()
+
     this.input.addEventListener(
       'keyup',
       debounce(() => this.keyStroke(this), 600)

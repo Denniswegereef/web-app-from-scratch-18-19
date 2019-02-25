@@ -7,14 +7,14 @@ async function tracks(number = 1) {
   })
 
   const markup = `
-  <ul class="recent-tracks">
+  <ul class="recent-tracks" id="vertical-scroll">
   ${data
     .map(
       d => `
     <li class="single-item" data-image='${d.image.big}'>
     <a href='#track/${d.slug}'>
       <img class='image' src="${
-        d.image.big ? d.image.big : 'https://via.placeholder.com/100'
+        d.image.big ? d.image.big : 'https://via.placeholder.com/600'
       }" alt="" />
 
         <h2>${d.song}</h2>

@@ -1,8 +1,11 @@
+import { loader } from './loading.js'
+
 class Router {
   constructor() {
     this.routes = []
-    ;(this.routerView = document.getElementById('router-view')),
-      (this.menuItems = document.getElementsByClassName('menu-item'))
+    this.routerView = document.getElementById('router-view')
+    this.menuItems = document.getElementsByClassName('menu-item')
+    this.loader = new loader()
   }
 
   checkDynamicUrl(url) {
@@ -32,6 +35,7 @@ class Router {
   }
 
   navigate(fragment) {
+    this.loader.start()
     // Check if normal route
     if (fragment === '' || this.getRoute(fragment)) {
       this.render(false, fragment)
@@ -73,13 +77,18 @@ class Router {
       ).page()
 
       this.routerView.innerHTML = result
+      this.loader.done(result)
+
       return
     }
 
     // Render dynamic route
     if (fragmentNumber) {
       const result = await this.routes[3].page(fragmentNumber)
+
       this.routerView.innerHTML = result
+      this.loader.done(result)
+
       return
     }
   }
@@ -89,11 +98,18 @@ class Router {
     this.routerView.innerHTML = this.getRoute('#error').page()
   }
 
+  interval() {
+    setInterval(() => {
+      this.reload()
+    }, 25000)
+  }
+
   reload() {
     this.navigate(window.location.hash)
   }
 
   init() {
+    this.interval()
     // Init when page loads
     this.navigate(window.location.hash)
 

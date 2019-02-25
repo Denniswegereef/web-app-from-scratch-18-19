@@ -14,7 +14,6 @@ const getLastFm = (
       : 'denniswegereef',
     limit = 19
 
-  console.log(user)
   const totalRequest = `${url}?method=${method}&user=${
     user.name
   }&api_key=${key}&format=json&page=${currentPage}&extended=1&limit=${limit}${additional}`

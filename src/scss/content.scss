@@ -48,7 +48,7 @@
 .singleContent {
   padding: 1rem;
   font-family: 'Karla', sans-serif;
-
+  display: flex;
   h2,
   h3 {
     color: #fff;
@@ -61,7 +61,41 @@
     opacity: 0.9;
     font-size: 1.2rem;
   }
-  .single-image {
-    box-shadow: 0px 3px 15px rgba(255, 255, 255, 0.2);
+
+  li {
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  img {
+    max-height: 400px;
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #router-view {
+    overflow-y: auto;
+  }
+  .recent-tracks {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    .single-item {
+      margin-right: 0;
+      margin-bottom: 1rem;
+      img {
+        max-width: 400px;
+        width: 100%;
+      }
+      &:hover {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .singleContent {
+    flex-direction: column;
+    justify-content: center;
   }
 }

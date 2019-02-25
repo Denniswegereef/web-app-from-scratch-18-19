@@ -2,6 +2,24 @@ header {
   display: flex;
   align-items: center;
   font-family: 'Karla', sans-serif;
+  position: relative;
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 14px;
+    height: 20px;
+    width: 20px;
+    background-size: 100%;
+    transform: rotateY(180deg) rotate(-15deg);
+    background-image: url(../img/edit.svg);
+    opacity: 0.8;
+  }
+
+  ul {
+    padding-left: 0;
+  }
 
   .user {
     color: #fff;
@@ -31,15 +49,59 @@ header {
   }
 
   input {
-    padding-left: 1rem;
     background: none;
     border: 0px solid;
     font-size: 2rem;
     transition: all 0.4s;
     color: #fff;
     font-weight: bold;
-    &:focus {
-      width: 8rem;
+    text-transform: capitalize;
+    position: relative;
+    &:hover {
+      content: 'Edit text';
     }
+  }
+
+  #loading {
+    opacity: 0;
+  }
+
+  .loading-show {
+    opacity: 1 !important;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    padding-top: 7rem;
+  }
+  header {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+
+  input {
+    text-align: center;
+  }
+
+  #loading {
+    margin-top: 1rem;
   }
 }
