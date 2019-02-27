@@ -57,7 +57,7 @@ const cleanSingleTrack = data => {
   let i = data.track
   console.log(i)
   return {
-    track: i.name,
+    track: i.name ? i.name : '',
     artist: i.artist.name,
     playcount: i.playcount,
     listeners: i.listeners,

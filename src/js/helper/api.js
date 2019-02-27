@@ -11,13 +11,13 @@ const getLastFm = (
 ) => {
   const user = localStorage.getItem('currentUser')
       ? JSON.parse(localStorage.getItem('currentUser'))
-      : 'denniswegereef',
+      : 'Denniswegereef',
     limit = 19
 
   const totalRequest = `${url}?method=${method}&user=${
     user.name
   }&api_key=${key}&format=json&page=${currentPage}&extended=1&limit=${limit}${additional}`
-
+  console.log(totalRequest)
   return fetch(totalRequest)
     .then(res => res.json())
     .catch(err => console.error)

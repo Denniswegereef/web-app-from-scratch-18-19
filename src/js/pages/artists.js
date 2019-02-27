@@ -17,7 +17,7 @@ async function artists(number = 1) {
       }" alt="" />
 
         <h2>${d.artist}</h2>
-        <h3>${d.playcount}</h3>
+        <h3>${d.playcount} plays</h3>
 
     </li>`
     )

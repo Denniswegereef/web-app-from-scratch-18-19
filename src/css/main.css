@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   box-sizing: border-box; }
 
@@ -159,6 +160,19 @@ header {
   display: flex;
   list-style-type: none;
   padding: 0; }
+  .recent-tracks .currently-playing {
+    z-index: 10; }
+    .recent-tracks .currently-playing p {
+      background-color: black;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      margin: 0;
+      font-style: normal !important;
+      font-weight: bold !important;
+      transition: all 0.3s; }
+      .recent-tracks .currently-playing p:before {
+        content: '🎧 '; }
   .recent-tracks .single-item {
     margin-right: 2rem;
     transition: transform 0.2s;

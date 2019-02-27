@@ -12,7 +12,9 @@ async function index(number = 1) {
   ${data
     .map(
       d => `
-    <li class="single-item" data-image='${d.image.big}'>
+    <li class="single-item ${
+      d.date === 'Currently playing' ? 'currently-playing' : ''
+    }" data-image='${d.image.big}'>
     <a href='#track/${d.slug}'>
       <img class='image' src="${
         d.image.big ? d.image.big : 'https://via.placeholder.com/600'

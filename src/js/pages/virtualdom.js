@@ -61,5 +61,22 @@ const virtualdom = (page = 1) => {
     })
   return '<div id="vdom"></div>'
 }
+//
+// setInterval(function() {
+//   getLastFm(1)
+//     .then(res => {
+//       return res.recenttracks.track
+//     })
+//     .then(res => {
+//       const vNewApp = createTrackList(res)
+//       const patch = diff(vApp, vNewApp)
+//
+//       // we might replace the whole $rootEl,
+//       // so we want the patch will return the new $rootEl
+//       $rootEl = patch($rootEl)
+//
+//       vApp = vNewApp
+//     })
+// }, 3000)
 
 export { virtualdom }

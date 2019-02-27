@@ -8,6 +8,22 @@
   display: flex;
   list-style-type: none;
   padding: 0;
+  .currently-playing {
+    z-index: 10;
+    p {
+      background-color: black;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      margin: 0;
+      font-style: normal !important;
+      font-weight: bold !important;
+      transition: all 0.3s;
+      &:before {
+        content: '🎧 ';
+      }
+    }
+  }
   .single-item {
     margin-right: 2rem;
     transition: transform 0.2s;

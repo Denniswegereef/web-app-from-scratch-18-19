@@ -101,7 +101,7 @@ class Router {
   interval() {
     setInterval(() => {
       this.reload()
-    }, 25000)
+    }, 60000)
   }
 
   reload() {

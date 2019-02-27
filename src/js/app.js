@@ -8,7 +8,7 @@ import { singleTrack } from './pages/singleTrack.js'
 import { error } from './pages/error.js'
 
 import { virtualdom } from './pages/virtualdom.js'
-import { vdynamic } from './pages/vdynamic.js'
+//import { vdynamic } from './pages/vdynamic.js'
 
 // Functionallity
 import { changeBackground } from './changeBackground.js'
@@ -23,7 +23,7 @@ router.add('#tracks', tracks)
 router.add('#track/:id', singleTrack)
 
 // router.add('#vdynamic/:id', vdynamic)
-//router.add('#virtualdom', virtualdom)
+router.add('#virtualdom', virtualdom)
 
 router.add('#error', error)
 
