@@ -1,3 +1,5 @@
+'use strict'
+
 class loader {
   constructor() {
     this.loadingEl = document.getElementById('loading')

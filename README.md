@@ -1,6 +1,6 @@
 ## The LastFM experience
 
-### Nice image here
+![interaction](images/screenshot.png)
 
 A single page application based on the Last.fm API. Created without the help of any libaries. It is possible can view it online[ here](https://denniswegereef.github.io/web-app-from-scratch-18-19/src).
 
@@ -71,7 +71,8 @@ async function getUser() {
 
 ### Diagrams
 
-![diagram](diagram.png)
+![actor](images/Actor.png)
+![interaction](images/Interaction.png)
 
 ### Extra
 

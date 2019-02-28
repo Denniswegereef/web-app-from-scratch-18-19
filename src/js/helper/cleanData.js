@@ -1,3 +1,4 @@
+'use strict'
 // Clean recent tracks
 const cleanRecent = data => {
   return data.recenttracks.track.map(i => {
@@ -55,7 +56,6 @@ const cleanTracks = data => {
 // Some magic for building up the data for a single track
 const cleanSingleTrack = data => {
   let i = data.track
-  console.log(i)
   return {
     track: i.name ? i.name : '',
     artist: i.artist.name,

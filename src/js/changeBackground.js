@@ -1,3 +1,5 @@
+'use strict'
+
 let active
 let backgroundOne = document.getElementById('background-one')
 let backgroundTwo = document.getElementById('background-two')

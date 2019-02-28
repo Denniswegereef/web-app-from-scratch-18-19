@@ -1,3 +1,5 @@
+'use strict'
+
 import { Router } from './router.js'
 
 // Import all pages

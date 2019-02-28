@@ -27,10 +27,6 @@ const checkUser = user => {
   const totalRequest = `${url}?method=user.getinfo&user=${user}&api_key=${key}&format=json`
 
   return fetch(totalRequest).then(res => {
-    if (res.status === 404) {
-      return res.json()
-    }
-
     return res.json()
   })
 }

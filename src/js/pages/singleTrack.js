@@ -1,20 +1,16 @@
+'use strict'
+
 import { getLastFm } from '../helper/api.js'
 import { cleanSingleTrack } from '../helper/cleanData.js'
 
 async function singleTrack(slug) {
-  console.log(slug)
-
   let data = await getLastFm(1, 'track.getInfo', slug)
-
-  console.log(data)
 
   if (data.error) {
     return `<div class="singleContent"><h1>${data.message}</h1></div>`
   }
-  console.log(data)
   let cleanData = cleanSingleTrack(data)
 
-  console.log(cleanData)
   let localBackground = localStorage.getItem('background')
 
   return `

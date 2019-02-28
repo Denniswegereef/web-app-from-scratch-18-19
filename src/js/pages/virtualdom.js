@@ -1,3 +1,5 @@
+'use strict'
+
 import { createElement } from '../vdom/createElement.js'
 import { render } from '../vdom/render.js'
 import { mount } from '../vdom/mount.js'

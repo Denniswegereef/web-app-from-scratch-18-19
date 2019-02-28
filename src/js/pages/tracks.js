@@ -1,3 +1,5 @@
+'use strict'
+
 import { getLastFm } from '../helper/api.js'
 import { cleanTracks } from '../helper/cleanData.js'
 

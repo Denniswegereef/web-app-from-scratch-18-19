@@ -1,3 +1,5 @@
+'use strict'
+
 import { loader } from './loading.js'
 
 class Router {
